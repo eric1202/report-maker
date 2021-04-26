@@ -45,6 +45,7 @@
 		align-items: center;
 		background: rgb(244, 245, 246);
 		border-radius: 10rpx;
+		
 	}
 
 	.slot-btn__hover {
@@ -61,7 +62,7 @@
 	.pre-item {
 		flex: 0 0 98.5%;
 		border-radius: 10rpx;
-		height: auto;
+		height: 250rpx;
 		overflow: hidden;
 		position: relative;
 		margin-bottom: 20rpx;

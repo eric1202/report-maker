@@ -17,6 +17,12 @@
 				"navigationBarTitleText": "早报助手"
 			}
 		},
+		{
+			"path": "pages/reportDetail/reportDetail",
+			"style": {
+				"navigationBarTitleText": "生成日报"
+			}
+		},
 		// 演示-组件
 		{
 			"path": "pages/example/components",
@@ -59,7 +65,16 @@
 				}
 			}
 		}
-	],
+	    ,{
+            "path" : "pages/reportDetail/reportDetail",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+    ],
 	"subPackages": [{
 			"root": "pages/componentsC",
 			"pages": [

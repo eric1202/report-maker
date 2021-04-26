@@ -30,69 +30,68 @@ export default {
 		};
 	},
 	mounted() {
-		console.log('call methord onReady!!');
-
-		this.$nextTick(async () => {
-			// 初始化
-
-			await this.$refs.rCanvas.init({
-				canvas_id: 'rCanvas'
-			});
-
-			// 画图
-			await this.$refs.rCanvas
-				.drawImage({
-					url: '../../static/posterBg.jpeg',
-					x: 0,
-					y: 0,
-					w: 375,
-					h: 630
-				})
-				.catch(err_msg => {
-					uni.showToast({
-						title: err_msg,
-						icon: 'none'
-					});
+		// console.log('call methord onReady!!');
+	},
+	methods:{
+		getImg(){
+			this.$nextTick(async () => {
+				// 初始化
+			
+				await this.$refs.rCanvas.init({
+					canvas_id: 'rCanvas'
 				});
-
-			// 画文字
-			await this.$refs.rCanvas
-				.drawText({
-					text: 'FUNDTP财经早报',
+			
+				// 画图
+				await this.$refs.rCanvas
+					.drawImage({
+						url: '../../static/posterBg.jpeg',
+						x: 0,
+						y: 0,
+						w: 375,
+						h: 630
+					})
+					.catch(err_msg => {
+						uni.showToast({
+							title: err_msg,
+							icon: 'none'
+						});
+					});
+			
+				// 画文字
+				await this.$refs.rCanvas
+					.drawText({
+						text: 'FUNDTP财经早报',
+						max_width: 0,
+						x: 38,
+						y: 90,
+						font_color: 'rgb(255, 255, 255)',
+						font_size: 30
+					})
+					.catch(err_msg => {
+						uni.showToast({
+							title: err_msg,
+							icon: 'none'
+						});
+					});
+			
+				await this.$refs.rCanvas.drawText({
+					text: '2020.07.28',
 					max_width: 0,
 					x: 38,
-					y: 90,
+					y: 190,
 					font_color: 'rgb(255, 255, 255)',
 					font_size: 30
-				})
-				.catch(err_msg => {
-					uni.showToast({
-						title: err_msg,
-						icon: 'none'
-					});
 				});
-
-			await this.$refs.rCanvas.drawText({
-				text: '2020.07.28',
-				max_width: 0,
-				x: 38,
-				y: 190,
-				font_color: 'rgb(255, 255, 255)',
-				font_size: 30
+			
+				// 生成海报
+				await this.$refs.rCanvas.draw(res => {
+					//res.tempFilePath：生成成功，返回base64图片
+					// 保存图片
+					this.$refs.rCanvas.saveImage(res.tempFilePath);
+				});
 			});
-
-			// // 生成海报
-			// await this.$refs.rCanvas.draw(res => {
-			// 	//res.tempFilePath：生成成功，返回base64图片
-			// 	// 保存图片
-			// 	this.$refs.rCanvas.saveImage(res.tempFilePath);
-			// });
-		});
+		}
 	}
-	// mounted:function(){
-	// 	console.log('call methord mounted!!')
-	// 	// this.onReady();
-	// },
 };
 </script>
 

@@ -39,7 +39,7 @@
 			</view>
 			<text>每日9点更新</text>
 		</view> -->
-		<button class="createBtn">生成早报</button>
+		<button class="createBtn" @click="makeReport()">生成早报</button>
 	</view>
 </template>
 
@@ -54,7 +54,7 @@ export default {
 	},
 	data() {
 		return {
-			datas:[],
+			datas: [],
 			show: false,
 			list: [{ name: '资讯' }, { name: '封面' }, { name: '其他内容' }],
 			typeList: [{ name: '独家' }, { name: '财经' }, { name: '区块' }],
@@ -93,11 +93,16 @@ export default {
 		segmentChange(index) {
 			this.current = index;
 		},
+		makeReport: function(e) {
+			uni.navigateTo({
+				url: '../reportDetail/reportDetail?id=222'
+			});
+		},
 		clickConfirm: function(e) {
 			this.show = false;
-			this.datas = this.items.filter((d)=>{
+			this.datas = this.items.filter(d => {
 				return d.checked == true;
-			})
+			});
 		},
 		checkboxChange: function(e) {
 			var items = this.items,
