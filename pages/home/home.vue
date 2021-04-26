@@ -1,7 +1,9 @@
 <template>
 	<view>
-		<u-subsection :list="list" :current="0" active-color="#8080ff"></u-subsection>
+		<!-- segment -->
+		<u-sticky><u-subsection :list="list" :current="current" active-color="#8080ff" @change="segmentChange"></u-subsection></u-sticky>
 
+		<!-- popup -->
 		<u-popup v-model="show" mode="bottom" height="600px">
 			<view class="popupView">
 				<h2>选择资讯</h2>
@@ -17,26 +19,42 @@
 			</view>
 			<button class="confirmNews" @click="clickConfirm()">确认</button>
 		</u-popup>
-		<u-button class="createPosterBtn" @click="show = true">创建早报</u-button>
 
-		<u-section title="今日热门" sub-title="查看更多"></u-section>
+		<view class="content">
+			<view v-show="current == 0">
+				<u-cell-group v-for="item in datas" :key="item.value"><u-cell-item :title="item.name" :arrow="false"></u-cell-item></u-cell-group>
+				<u-button class="createPosterBtn" @click="show = true">创建早报</u-button>
+			</view>
+			<view v-show="current == 1"><coverList></coverList></view>
+			<view v-show="current == 2"><newsList></newsList></view>
+		</view>
 
-		<view class="jx">
+		<!-- call popup -->
+		<!-- <u-section title="今日热门" sub-title="查看更多"></u-section> -->
+
+		<!-- <view class="jx">
 			<view class="">
 				<h2>编辑精选</h2>
 				<h3>无需自选 快速生成</h3>
 			</view>
 			<text>每日9点更新</text>
-		</view>
-
+		</view> -->
 		<button class="createBtn">生成早报</button>
 	</view>
 </template>
 
 <script>
+import newsList from './newsList.vue';
+import coverList from './coverList.vue';
+
 export default {
+	components: {
+		newsList: newsList,
+		coverList: coverList
+	},
 	data() {
 		return {
+			datas:[],
 			show: false,
 			list: [{ name: '资讯' }, { name: '封面' }, { name: '其他内容' }],
 			typeList: [{ name: '独家' }, { name: '财经' }, { name: '区块' }],
@@ -72,8 +90,14 @@ export default {
 	},
 
 	methods: {
+		segmentChange(index) {
+			this.current = index;
+		},
 		clickConfirm: function(e) {
 			this.show = false;
+			this.datas = this.items.filter((d)=>{
+				return d.checked == true;
+			})
 		},
 		checkboxChange: function(e) {
 			var items = this.items,
