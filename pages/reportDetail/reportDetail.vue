@@ -1,5 +1,6 @@
 <template>
-	<view class="container">
+	<div class="container" ref="printMe">
+		<img :src="output" />
 		<view class="logo">fdtp</view>
 		<view class="title">fundtp 财金直播</view>
 		<view class="date">2020.07.17</view>
@@ -11,7 +12,7 @@
 				<view class="website">www.fundtp.com</view>
 			</view>
 		</view>
-	</view>
+	</div>
 </template>
 
 <script>
@@ -23,6 +24,7 @@ export default {
 	},
 	data() {
 		return {
+			output: null,
 			news: [
 				{
 					title: '要问来了',
@@ -34,7 +36,24 @@ export default {
 			]
 		};
 	},
-	methods: {}
+	methods: {
+		async printHtml() {
+			const el = this.$refs.printMe;
+			// add option type to get the image version
+			// if not provided the promise will return
+			// the canvas.
+			const options = {
+				type: 'dataURL'
+			};
+			this.output = await this.$html2canvas(el, options).catch((e) => {console.log(e)});
+		}
+	},
+	mounted() {
+		setTimeout(() => {
+			console.log('ccccc');
+			// this.printHtml();
+		}, 2000);
+	}
 };
 </script>
 
@@ -47,9 +66,8 @@ export default {
 	flex-direction: column;
 	justify-content: center;
 }
-.dataList{
+.dataList {
 	margin-top: 40rpx;
-
 }
 .logo {
 	width: 200rpx;

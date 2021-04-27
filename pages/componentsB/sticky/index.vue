@@ -9,6 +9,11 @@
 						宝剑锋从磨砺出,梅花香自苦寒来
 					</view>
 				</u-sticky>
+				<u-sticky :offset-top="400" :enable="enable" @fixed="fixed" @unfixed="unfixed">
+					<view class="stickey">
+aaaa
+					</view>
+				</u-sticky>
 			</view>
 		</view>
 		<view class="u-config-wrap">

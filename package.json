@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/YanxinNet/uView#readme",
   "dependencies": {
+    "vue-html2canvas": "0.0.4",
     "vue-i18n": "^8.20.0"
   }
 }

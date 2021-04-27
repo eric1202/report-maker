@@ -61,4 +61,9 @@ Vue.use(httpInterceptor, app);
 import httpApi from '@/common/http.api.js';
 Vue.use(httpApi, app);
 
+//截图
+import VueHtml2Canvas from 'vue-html2canvas';
+Vue.use(VueHtml2Canvas);
+
+
 app.$mount();

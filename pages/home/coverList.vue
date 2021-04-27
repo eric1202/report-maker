@@ -7,7 +7,7 @@
 		</view>
 		<u-upload :custom-btn="true" ref="uUpload" :show-upload-list="showUploadList" :action="action"> 
 			<view slot="addBtn" class="slot-btn" hover-class="slot-btn__hover" hover-stay-time="150">
-				<u-icon name="plus" size="120" color="#c0c4cc"></u-icon>
+				<u-icon class="addIcon" name="plus" size="120" color="#c0c4cc"></u-icon>
 			</view>
 		</u-upload>
 	</view>
@@ -32,18 +32,22 @@
 	}
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 	.wrap {
 		padding: 24rpx;
 	}
-	
+	.addIcon{
+		left: 375rpx;
+		margin-left: 300rpx;
+	}
 	.slot-btn {
+
 		// width: 90%;
 		// height: auto;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		background: rgb(244, 245, 246);
+		// display: flex;
+		// justify-content: center;
+		// align-items: center;
+		// background: rgb(244, 245, 246);
 		border-radius: 10rpx;
 		
 	}
